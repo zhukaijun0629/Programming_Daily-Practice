@@ -1,23 +1,26 @@
-from typing import List
-
-
 class Solution:
-    def permute(self, nums: List[int]) -> List[List[int]]:
+    """
+    @param: nums: A list of integers.
+    @return: A list of permutations.
+    """
+
+    def permute(self, nums):
         if not nums:
             return [[]]
 
         results = []
-        self.dfs(nums, [0]*len(nums), [], results)
+        self.dfs(sorted(nums), [0]*len(nums), [], results)
         return results
-    
-    def dfs(self, nums: List[int], visited: List[bool], candidate: List[int], results: List[List[int]]):
-        if len(candidate) == len(nums):
+
+    def dfs(self, nums, visited, candidate, results):
+        if len(nums) == len(candidate):
             results.append(candidate[:])
             return
-        
+
         for i, num in enumerate(nums):
             if visited[i]:
                 continue
+            # never add a repeated number prior to its first apperance
             if i > 0 and nums[i] == nums[i-1] and not visited[i-1]:
                 continue
 
@@ -26,7 +29,8 @@ class Solution:
 
             self.dfs(nums, visited, candidate, results)
 
-            candidate.pop()
             visited[i] = False
+            candidate.pop()
 
-print(Solution().permute([1,2,2,2]))
+
+print(Solution().permute([1, 2, 2, 2]))
