@@ -7,7 +7,7 @@ def dfs(matrix):
     visited = set()
     directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
 
-    def traverse(i, j, visited):
+    def traverse(i, j):
         # a. Check if visited
         if (i, j) in visited:
             return
@@ -17,13 +17,13 @@ def dfs(matrix):
         for direction in directions:
             next_i = i + direction[0]
             next_j = j + direction[1]
-            if 0 <= next_i < ROWS and 0 <= next_j < COLS :
+            if 0 <= next_i < ROWS and 0 <= next_j < COLS:
                 # d. Add in your question-specific checks.
-                traverse(next_i, next_j, visited)
+                traverse(next_i, next_j)
 
 # 3. For each point, traverse it.
     for i in range(ROWS):
         for j in range(COLS):
             traverse(i, j)
-    
+
     return something
