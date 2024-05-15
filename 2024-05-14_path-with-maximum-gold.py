@@ -56,7 +56,32 @@ class Solution:
                     continue
                 result = max(result, traverse(i, j))
         return result
+    
+    def getMaximumGold2(self, grid: List[List[int]]) -> int:
+        if not grid:
+            return 0
+        ROWS, COLS = len(grid), len(grid[0])
+        directions = ((0, 1), (0, -1), (1, 0), (-1, 0))
+
+        def traverse(i, j):
+            cur_gold = grid[i][j]
+            grid[i][j] = 0
+            future_gold = 0
+            for direction in directions:
+                next_i = i + direction[0]
+                next_j = j + direction[1]
+                if 0 <= next_i < ROWS and 0 <= next_j < COLS and grid[next_i][next_j] != 0:
+                    future_gold = max(future_gold, traverse(next_i, next_j))
+            grid[i][j] = cur_gold
+            return cur_gold + future_gold
+
+        result = 0
+        for i in range(ROWS):
+            for j in range(COLS):
+                if grid[i][j] != 0:
+                    result = max(result, traverse(i, j))
+        return result
 
 
 # DFS to visit each cell once, store the result with max gold
-print(Solution().getMaximumGold([[0, 6, 0], [5, 8, 7], [0, 9, 0]]))
+print(Solution().getMaximumGold2([[0, 6, 0], [5, 8, 7], [0, 9, 0]]))

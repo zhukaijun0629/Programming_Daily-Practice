@@ -20,6 +20,8 @@ def dfs(matrix):
             if 0 <= next_i < ROWS and 0 <= next_j < COLS:
                 # d. Add in your question-specific checks.
                 traverse(next_i, next_j)
+        # (Optional) e. if need backtracking
+        visited.discard((i, j))
 
 # 3. For each point, traverse it.
     for i in range(ROWS):
