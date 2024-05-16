@@ -1,4 +1,5 @@
 import collections
+from typing import List
 
 class Solution:
     def findOrder(self, N: int, prerequisites: List[List[int]]) -> List[int]:
