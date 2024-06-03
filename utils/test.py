@@ -118,3 +118,26 @@ class Solution4:
 			candidate.pop()
 
 print(Solution4().permutes([1,2,3,2]))
+
+
+def binary_search(self, nums, target):
+    if not nums:
+        return -1
+    
+    start, end = 0, len(nums) - 1
+    
+    while start + 1 < end:
+        mid = (start + end) // 2
+        if nums[mid] < target:
+            start = mid
+        elif nums[mid] == target:
+            return mid
+        else:
+            end = mid
+    
+    if nums[start] == target:
+        return start
+    if nums[end] == target:
+        return end
+    
+    return -1
