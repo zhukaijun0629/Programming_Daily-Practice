@@ -5,16 +5,19 @@
 import collections
 
 # Definition for a binary tree node.
+
+
 class TreeNode:
     def __init__(self, x):
         self.val = x
         self.left = None
         self.right = None
 
+
 def bfs_tree_node(root, result):
     if not root:
         return
-        
+
     queue = collections.deque([root, 0])
     while queue:
         node, level = queue.popleft()
@@ -26,16 +29,17 @@ def bfs_tree_node(root, result):
             queue.append(node.right, level + 1)
     return result
 
+
 def bfs_tree_level(root, result):
     if not root:
         return
-        
+
     queue = [root]
     level = -1
-    while q:
+    while queue:
         level += 1
         next_queue = []
-        for node in q:
+        for node in queue:
             # do somethins with this layer nodes...
             result.append(node.val)
             if node.left:
